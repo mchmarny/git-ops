@@ -18,7 +18,7 @@ Next, edit the `staticMessage` variable in [app/main.go](app/main.go) to simulat
 
 ```go
 const (
-	greetingsMessage = "hello PDX"
+  greetingsMessage = "hello PDX"
 )
 ```
 
