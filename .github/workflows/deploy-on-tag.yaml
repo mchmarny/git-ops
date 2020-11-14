@@ -39,15 +39,16 @@ jobs:
         echo "BUILD_TIME=${BUILD_TIME}" >> $GITHUB_ENV
 
     - name: Push
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v1
       with:
         context: .
         file: ./Dockerfile
         username: ${{ github.actor }}
         password: ${{ secrets.OPS_TOKEN }}
         registry: ghcr.io
+        repository: ${{ github.actor }}/gitops-app
         push: true
-        tags: ${{ github.actor }}/git-ops-app:${{ env.RELEASE_VERSION }}
+        tags: ${{ env.RELEASE_VERSION }}
         build-args: |
             APP_VERSION=${{ env.RELEASE_VERSION }}
             BUILD_TIME=${{ env.BUILD_TIME }}
