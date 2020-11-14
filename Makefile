@@ -1,4 +1,4 @@
-APP_VERSION ?=v0.4.24
+APP_VERSION ?=v0.4.25
 APP_ID      ?=git-ops
 APP_PORT    ?=8080
 IMAGE_OWNER ?=$(shell git config --get user.username)
@@ -42,7 +42,7 @@ lint: ## Lints the entire project
 	golangci-lint run --timeout=3m
 
 .PHONY: sync
-sync: ## Lints the entire project 
+sync: ## Adds, commits, and pushes the local changes 
 	git add .
 	git commit -m "new greetings"
 	git push --all
