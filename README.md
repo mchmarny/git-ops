@@ -6,7 +6,7 @@
 
 ## Demo
 
-[![Test](https://github.com/mchmarny/git-ops/workflows/Test/badge.svg)](https://github.com/mchmarny/git-ops/actions?query=workflow%3ATest) [![Release](https://github.com/mchmarny/git-ops/workflows/Release/badge.svg)](https://github.com/mchmarny/git-ops/actions?query=workflow%3ARelease) [![Go Report Card](https://goreportcard.com/badge/github.com/mchmarny/git-ops)](https://goreportcard.com/report/github.com/mchmarny/git-ops) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/mchmarny/git-ops)
+![git-ops release on tag](https://github.com/mchmarny/git-ops/workflows/git-ops%20release%20on%20tag/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/mchmarny/git-ops)](https://goreportcard.com/report/github.com/mchmarny/git-ops) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/mchmarny/git-ops)
 
 To walk-through the demo steps, start by navigating to the the already deployed app and take a note of the release version and the deployment time (in UTC):
 
