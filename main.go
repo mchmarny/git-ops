@@ -25,7 +25,7 @@ var (
 	logger  = log.New(os.Stdout, "", 0)
 	address = getEnvVar("ADDRESS", ":8080")
 
-	templates *template.Template
+	templates = template.Must(template.ParseGlob("resource/template/*"))
 )
 
 func main() {
@@ -37,11 +37,8 @@ func main() {
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("resource/static"))))
 	mux.HandleFunc("/favicon.ico", faviconHandler)
 
-	// tempalates
-	templates = template.Must(template.ParseGlob("resource/template/*"))
-
 	// other handlers
-	mux.HandleFunc("/", rootHandler)
+	mux.HandleFunc("/", appHandler)
 
 	// create a Dapr service
 	s := daprd.NewServiceWithMux(address, mux)
@@ -52,18 +49,11 @@ func main() {
 	}
 }
 
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-	proto := r.Header.Get("x-forwarded-proto")
-	if proto == "" {
-		proto = "http"
-	}
-
+func appHandler(w http.ResponseWriter, r *http.Request) {
 	data := map[string]string{
-		"host":    r.Host,
-		"proto":   proto,
 		"version": AppVersion,
 		"message": staticMessage,
-		"built":   BuildTime,
+		"build":   BuildTime,
 	}
 
 	err := templates.ExecuteTemplate(w, "index", data)
