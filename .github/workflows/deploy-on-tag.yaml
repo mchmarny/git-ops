@@ -44,9 +44,8 @@ jobs:
         context: .
         file: ./Dockerfile
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: ${{ github.actor }}/git-ops-demo/git-ops-app
+        password: ${{ secrets.OPS_TOKEN }}
+        registry: ghcr.io/${{ github.actor }}/git-ops-app
         push: true
         tags: ${{ env.RELEASE_VERSION }}
         build-args: |
