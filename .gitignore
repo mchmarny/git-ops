@@ -8,8 +8,20 @@
 # Test binary, built with `go test -c`
 *.test
 
-# Output of the go coverage tool, specifically when used with LiteIDE
+# Output
 *.out
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
+# mac
+.DS_Store
+
+# bin 
+bin
+
+# vendored dependnacies 
+vendor
+
+# certs 
+*.pem 
+
+# certs
+certs
