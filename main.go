@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	staticMessage = "hello SEA"
+	greetingsMessage = "hello SEA"
 )
 
 var (
@@ -52,7 +52,7 @@ func main() {
 func appHandler(w http.ResponseWriter, r *http.Request) {
 	data := map[string]string{
 		"version": AppVersion,
-		"message": staticMessage,
+		"message": greetingsMessage,
 		"build":   BuildTime,
 	}
 

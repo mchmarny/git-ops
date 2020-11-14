@@ -1,12 +1,14 @@
 # Continuous deployment demo using GitHub actions
 
-> this demo is still being developed, don't use it!
+> This demo assumes yoo already have a Kubernetes cluster configured with Dapr. If not, consider the opinionated Dapr install in [dapr-demos/setup](https://github.com/mchmarny/dapr-demos/tree/master/setup).
 
-> cluster setup 
+![](image/diagram.png)
 
-## Demo 
+## Demo
 
-### Edit it
+Walk-through the demo steps.
+
+### Edit code
 
 Start by editing the `staticMessage` variable in [app/main.go](app/main.go) to simulate developer making code changes:
 
@@ -14,14 +16,22 @@ Start by editing the `staticMessage` variable in [app/main.go](app/main.go) to s
 
 ```go
 const (
-	staticMessage = "hello PDX"
+	greetingsMessage = "hello PDX"
 )
 ```
 
-Then increment the version number variable (`APP_VERSION`) in the [app/Makefile](app/Makefile):
+Next increment the version number variable (`APP_VERSION`) in the [app/Makefile](app/Makefile):
 
 ```shell
-APP_VERSION ?=v0.1.4
+APP_VERSION ?=v0.1.5 # was v0.1.4
+```
+
+### Add, commit, and push the changes upstream
+
+```shell
+git add .
+git commit -m "new greetings"
+git push --all
 ```
 
 ### Tag it
