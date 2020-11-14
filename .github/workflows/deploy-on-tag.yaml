@@ -44,15 +44,12 @@ jobs:
         context: .
         file: ./Dockerfile
         username: ${{ github.actor }}
-        password: ${{ secrets.DEVOPS_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: ${{ github.actor }}/dapr-demos/git-ops-app
+        repository: ${{ github.actor }}/git-ops-demo/git-ops-app
         push: true
         tags: ${{ env.RELEASE_VERSION }}
         build-args: |
             APP_VERSION=${{ env.RELEASE_VERSION }}
             BUILD_TIME=${{ env.BUILD_TIME }}
-
-
-          
   
