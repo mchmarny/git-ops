@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	staticMessage = "hello PDX"
+	staticMessage = "hello SEA"
 )
 
 var (
