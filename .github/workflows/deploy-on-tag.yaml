@@ -33,10 +33,8 @@ jobs:
 
     - name: Variables
       run: |
-        RELEASE_VERSION=${GITHUB_REF#refs/*/}
-        echo "RELEASE_VERSION=${RELEASE_VERSION}" >> $GITHUB_ENV
-        BUILD_TIME=$(echo $(date -u +"%Y-%m-%dT%T-UTC"))
-        echo "BUILD_TIME=${BUILD_TIME}" >> $GITHUB_ENV
+        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        echo $(date -u +"BUILD_TIME=%Y-%m-%dT%T-UTC") >> $GITHUB_ENV
 
     - name: Push
       uses: docker/build-push-action@v1
@@ -49,6 +47,6 @@ jobs:
         push: true
         tags: ${{ env.RELEASE_VERSION }},latest
         build-args: |
-            APP_VERSION=${{ env.RELEASE_VERSION }}
-            BUILD_TIME=${{ env.BUILD_TIME }}
+            APP_VERSION=$RELEASE_VERSION
+            BUILD_TIME=$BUILD_TIME
   
