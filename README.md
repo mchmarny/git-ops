@@ -95,6 +95,34 @@ If everything went well, you should be able to navigate now to:
 
 https://gitops.thingz.io
 
+## GitHub
+
+To configure the GitHub action so it can apply new builds to your cluster, first you'll need to get your service principal. For AKS you can run:
+
+```shell
+az ad sp create-for-rbac --sdk-auth
+```
+
+The resulting file will look something like this:
+
+```json
+{
+  "clientId": "...",
+  "clientSecret": "...",
+  "subscriptionId": "...",
+  "tenantId": "...",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}
+```
+
+Copy that JSON and create `AZURE_CREDENTIALS` secret in your GitHub repo where the action will run. 
+
+
 
 ## Disclaimer
 

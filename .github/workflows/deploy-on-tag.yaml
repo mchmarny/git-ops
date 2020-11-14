@@ -52,4 +52,20 @@ jobs:
         push: true
         tags: ${{ env.RELEASE_VERSION }},latest
         build_args: APP_VERSION=${{ env.RELEASE_VERSION }},BUILD_TIME=${{ env.BUILD_TIME }}
-  
+
+    - name: Context
+      uses: azure/aks-set-context@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        resourceGroupName: ${{ secrets.AZURE_RESOURCE_GROUP }}
+        clusterName: ${{ secrets.AZURE_CLUSTER_NAME }}
+      id: login
+
+    - name: Publish
+      uses: Azure/k8s-deploy@v1
+      with:
+        namespace: gitops
+        kubectl-version: latest
+        manifests: k8s/deployment.yaml
+        images: ghcr.io/mchmarny/git-ops:${{ env.RELEASE_VERSION }}
+        
