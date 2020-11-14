@@ -51,7 +51,5 @@ jobs:
         registry: ghcr.io
         push: true
         tags: ${{ env.RELEASE_VERSION }},latest
-        build-args: |
-            APP_VERSION=${{ env.RELEASE_VERSION }}
-            BUILD_TIME=${{ env.BUILD_TIME }}
+        build_args: APP_VERSION=${{ env.RELEASE_VERSION }},BUILD_TIME=${{ env.BUILD_TIME }}
   
