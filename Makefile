@@ -41,6 +41,12 @@ image: tidy ## Builds and publish image
 lint: ## Lints the entire project 
 	golangci-lint run --timeout=3m
 
+.PHONY: sync
+sync: ## Lints the entire project 
+	git add .
+	git commit -m "new greetings"
+	git push --all
+
 tag: ## Creates release tag 
 	git tag $(APP_VERSION)
 	git push origin $(APP_VERSION)
