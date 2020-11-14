@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: service
-        image: ghcr.io/mchmarny/git-ops:v0.4.6
+        image: ghcr.io/mchmarny/git-ops:latest
         ports:
         - containerPort: 8080
         env:

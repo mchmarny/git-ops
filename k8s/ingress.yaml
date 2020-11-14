@@ -8,6 +8,11 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+    - hosts:
+      - '*.thingz.io'  
+      - thingz.io
+      secretName: tls-secret
   rules:
     - host: gitops.thingz.io
       http:

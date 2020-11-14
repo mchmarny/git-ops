@@ -1,7 +1,6 @@
-APP_VERSION ?=v0.4.6
-APP_ID      ?=app
+APP_VERSION ?=v0.4.14
+APP_ID      ?=git-ops
 APP_PORT    ?=8080
-IMAGE_NAME  ?=git-ops-app
 IMAGE_OWNER ?=$(shell git config --get user.username)
 
 .PHONY: all
@@ -33,9 +32,10 @@ dapr: tidy ## Runs uncompiled code in Dapr
 image: tidy ## Builds and publish image 
 	docker build \
 		--build-arg APP_VERSION=$(APP_VERSION) \
-		--build-arg BUILD_TIME=$(shell date +"%Y-%m-%dT%T") \
-		-t "ghcr.io/$(IMAGE_OWNER)/$(IMAGE_NAME):$(APP_VERSION)" .
-	docker push "ghcr.io/$(IMAGE_OWNER)/$(IMAGE_NAME):$(APP_VERSION)"
+		--build-arg BUILD_TIME=$(shell date -u +"%Y-%m-%dT%T") \
+		-t ghcr.io/$(IMAGE_OWNER)/$(APP_ID):$(APP_VERSION) \
+		.
+	docker push ghcr.io/$(IMAGE_OWNER)/$(APP_ID):$(APP_VERSION)
 
 .PHONY: lint
 lint: ## Lints the entire project 
