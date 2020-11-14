@@ -1,4 +1,4 @@
-APP_VERSION ?=v0.4.14
+APP_VERSION ?=v0.4.15
 APP_ID      ?=git-ops
 APP_PORT    ?=8080
 IMAGE_OWNER ?=$(shell git config --get user.username)
@@ -32,7 +32,7 @@ dapr: tidy ## Runs uncompiled code in Dapr
 image: tidy ## Builds and publish image 
 	docker build \
 		--build-arg APP_VERSION=$(APP_VERSION) \
-		--build-arg BUILD_TIME=$(shell date -u +"%Y-%m-%dT%T") \
+		--build-arg BUILD_TIME=$(shell date -u +"%Y-%m-%dT%T-UTC") \
 		-t ghcr.io/$(IMAGE_OWNER)/$(APP_ID):$(APP_VERSION) \
 		.
 	docker push ghcr.io/$(IMAGE_OWNER)/$(APP_ID):$(APP_VERSION)
