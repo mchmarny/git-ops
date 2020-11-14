@@ -46,7 +46,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.OPS_TOKEN }}
         registry: ghcr.io
-        repository: ${{ github.actor }}/gitops-app
         push: true
         tags: ${{ env.RELEASE_VERSION }}
         build-args: |
