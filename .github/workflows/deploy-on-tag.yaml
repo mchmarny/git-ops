@@ -57,8 +57,8 @@ jobs:
       uses: azure/aks-set-context@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        resourceGroupName: ${{ secrets.AZURE_RESOURCE_GROUP }}
-        clusterName: ${{ secrets.AZURE_CLUSTER_NAME }}
+        resource-group: ${{ secrets.AZURE_RESOURCE_GROUP }}
+        cluster-name: ${{ secrets.AZURE_CLUSTER_NAME }}
       id: login
 
     - name: Publish

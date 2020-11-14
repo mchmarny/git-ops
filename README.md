@@ -120,8 +120,11 @@ The resulting file will look something like this:
 }
 ```
 
-Copy that JSON and create `AZURE_CREDENTIALS` secret in your GitHub repo where the action will run. 
+Copy that JSON and create following secrets in your GitHub repo where the action will run:
 
+* `AZURE_CREDENTIALS` - with the content of the above file 
+* `AZURE_CLUSTER_NAME` - with the name of your cluster 
+* `AZURE_RESOURCE_GROUP` - with the name of your Azure resource group 
 
 
 ## Disclaimer
