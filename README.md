@@ -69,7 +69,7 @@ If the changes are not there, check the [GitHub Action](https://github.com/mchma
 To setup the demo, first create the namespace: 
 
 ```shell
-kubectl apply -f k8s/ns.yaml
+kubectl apply -f config/space.yaml
 ```
 
 If you have certs for the demo domain create a TLS secret:
@@ -81,7 +81,7 @@ kubectl create secret tls tls-secret -n gitops --key cert-pk.pem --cert cert-ca.
 Now applying all the other [deployments](k8s/):
 
 ```shell
-kubectl apply -f k8s/
+kubectl apply -f config/
 ```
 
 When the command completed, check on the status: 

@@ -66,6 +66,6 @@ jobs:
       with:
         namespace: gitops
         kubectl-version: latest
-        manifests: k8s/deployment.yaml
+        manifests: config/app.yaml
         images: ghcr.io/mchmarny/git-ops:${{ env.RELEASE_VERSION }}
         
