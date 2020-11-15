@@ -82,7 +82,7 @@ If you have certs for the demo domain create a TLS secret:
 kubectl create secret tls tls-secret -n gitops --key cert-pk.pem --cert cert-ca.pem
 ```
 
-Now applying all the other [deployments](k8s/):
+Now apply the rest of [deployments](config/):
 
 ```shell
 kubectl apply -f config/

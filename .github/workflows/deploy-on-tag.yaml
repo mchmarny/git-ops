@@ -60,7 +60,9 @@ jobs:
     - name: Publish
       uses: azure/k8s-deploy@v1
       with:
-        manifests: config/app.yaml
+        manifests: |
+          component/schedule.yaml
+          config/app.yaml
         namespace: gitops
         images: ghcr.io/mchmarny/git-ops:${{ env.RELEASE_VERSION }}
         
