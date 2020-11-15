@@ -10,18 +10,15 @@
 
 # Output
 *.out
+bin
 
 # mac
 .DS_Store
-
-# bin 
-bin
 
 # vendored dependnacies 
 vendor
 
 # certs 
 *.pem 
-
-# certs
 certs
+sa.json

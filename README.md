@@ -64,7 +64,7 @@ If the changes are not there, check the [GitHub Action](https://github.com/mchma
 
 ## Setup Demo
 
-### Deploy
+### Initial deployment
 
 To setup the demo, first create the namespace: 
 
@@ -114,38 +114,21 @@ If everything went well, you should be able to navigate now to:
 
 https://gitops.thingz.io
 
-## GitHub
+### Kubernetes config
 
-To configure the GitHub action, so it can build images and deploy them to your cluster, first you'll need to get your service principal configured. AKS has a nice utility for this in the Azure CLI: 
+To enable GitHub action to deploy the built images to your cluster you'll first need to configure its context. If you already have authenticated to that cluster you can find this info in the `.kube` folder in your home directory. To ensure that the config has only information for that one cluster, it may be easier to simply export it from your managed Kubernetes provider.
+
+> Warning, the exported file has sensitive information, make sure to delete it after
+
+For AKS for example:
 
 ```shell
-az ad sp create-for-rbac --sdk-auth
+az aks get-credentials --name demo --file sa.json
 ```
 
-The result will look something like this:
+next, create GitHub secret (named `KUBECONFIG`) with the content of that file on the repo where the action will run.
 
-```json
-{
-  "clientId": "...",
-  "clientSecret": "...",
-  "subscriptionId": "...",
-  "tenantId": "...",
-  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
-  "resourceManagerEndpointUrl": "https://management.azure.com/",
-  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
-  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
-  "galleryEndpointUrl": "https://gallery.azure.com/",
-  "managementEndpointUrl": "https://management.core.windows.net/"
-}
-```
-
-Copy that JSON and create following secrets in your GitHub repo where the action will run:
-
-* `AZURE_CREDENTIALS` - with the content of the JSON that was printed out by the `az` CLI 
-* `AZURE_CLUSTER_NAME` - with the name of your cluster 
-* `AZURE_RESOURCE_GROUP` - with the name of your Azure resource group 
-
-Setup is now done, you can navigate to the top of this readme and run the [demo](#demo).
+That concludes the setup. You can navigate to the top of this readme and run the [demo](#demo).
 
 ## Disclaimer
 
