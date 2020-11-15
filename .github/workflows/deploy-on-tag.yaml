@@ -13,13 +13,11 @@ jobs:
     steps:
 
     - name: Setup
-      id: go
       uses: actions/setup-go@v2
       with:
         go-version: ^1.15
 
     - name: Checkout
-      id: setup
       uses: actions/checkout@v2
 
     - name: Tidy
@@ -54,18 +52,14 @@ jobs:
         build_args: APP_VERSION=${{ env.RELEASE_VERSION }},BUILD_TIME=${{ env.BUILD_TIME }}
 
     - name: Context
-      uses: azure/aks-set-context@v1
+      uses: azure/k8s-set-context@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        resource-group: ${{ secrets.AZURE_RESOURCE_GROUP }}
-        cluster-name: ${{ secrets.AZURE_CLUSTER_NAME }}
-      id: login
-
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+      
     - name: Publish
       uses: Azure/k8s-deploy@v1
       with:
-        namespace: gitops
-        kubectl-version: latest
         manifests: config/app.yaml
         images: ghcr.io/mchmarny/git-ops:${{ env.RELEASE_VERSION }}
         
