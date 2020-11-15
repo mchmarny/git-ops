@@ -55,12 +55,13 @@ jobs:
       uses: azure/k8s-set-context@v1
       with:
         method: kubeconfig
-        kubeconfig: ${{ secrets.KUBECONFIG }}
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
       
     - name: Publish
       uses: azure/k8s-deploy@v1
       with:
         manifests: |
+          component/schedule.yaml
           config/app.yaml
         namespace: gitops
         images: ghcr.io/mchmarny/git-ops:${{ env.RELEASE_VERSION }}

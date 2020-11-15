@@ -1,7 +1,8 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: demo-schedule
+  name: demo-cron
+  namespace: gitops
 spec:
   type: bindings.cron
   metadata:

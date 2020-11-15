@@ -1,4 +1,4 @@
-APP_VERSION ?=v0.4.27
+APP_VERSION ?=v0.4.28
 APP_ID      ?=git-ops
 APP_PORT    ?=8080
 IMAGE_OWNER ?=$(shell git config --get user.username)
@@ -22,9 +22,10 @@ run: tidy ## Runs uncompiled code
 .PHONY: dapr
 dapr: tidy ## Runs uncompiled code in Dapr
 	dapr run \
-	 --app-id $(APP_ID) \
+	 --app-id gitops \
 	 --app-port $(APP_PORT) \
 	 --app-protocol http \
+	 --components-path ./component \
 	 --log-level debug \
 	 go run main.go
 

@@ -21,23 +21,31 @@ body {
 	margin: 10px 0 0 0;
 	clear: both;
 	break-after: always;
-	height: 300px;
+	height: 200px;
 }
 
 #page-header-image {
 	border: 0;
-	text-align: center;
+	margin-left: 25px;
 }
 
 #page-header-image img {
-	width: 300px;
-	height: 300px;
+	width: 200px;
+	height: 200px;
+	float: left;
+}
+
+#connection {
+	float: right;
+	margin: 10px;
+	font-size: 1em;
 }
 
 #middle-section {
 	margin: 0;
 	padding: 10px;
 	overflow: auto;
+	background-color: #dcdcdc;
 }
 
 #middle-section div {
@@ -59,9 +67,15 @@ body {
 #version {
 	color: #666;
 	font-size: 2em;
-	padding: 50px 0;
+	padding: 30px 0;
 }
 
+#events {
+	color: #000;
+	font-size: 1em;
+	padding: 25px 0;
+	height: 50px;
+}
 
 .error {
 	color: red;

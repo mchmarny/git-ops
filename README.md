@@ -82,9 +82,10 @@ If you have certs for the demo domain create a TLS secret:
 kubectl create secret tls tls-secret -n gitops --key cert-pk.pem --cert cert-ca.pem
 ```
 
-Now apply the rest of [deployments](config/):
+Now apply the Dapr component and the rest of [deployment](config/):
 
 ```shell
+kubectl apply -f component/
 kubectl apply -f config/
 ```
 
@@ -130,7 +131,7 @@ For AKS for example:
 az aks get-credentials --name demo --file sa.json
 ```
 
-next, create GitHub secret (named `KUBECONFIG`) with the content of that file on the repo where the action will run.
+next, create GitHub secret (named `KUBE_CONFIG`) with the content of that file on the repo where the action will run.
 
 That concludes the setup. You can navigate to the top of this readme and run the [demo](#demo).
 

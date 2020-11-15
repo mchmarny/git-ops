@@ -34,9 +34,11 @@ spec:
     spec:
       containers:
       - name: service
-        image: ghcr.io/mchmarny/git-ops:v0.4.20
+        image: ghcr.io/mchmarny/git-ops:v0.4.27
         ports:
         - containerPort: 8080
         env:
         - name: ADDRESS
           value: ":8080"
+        - name: SCHEDULE
+          value: "demo-cron"
