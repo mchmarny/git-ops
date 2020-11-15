@@ -1,10 +1,12 @@
-# Continuous deployment demo using GitHub actions
+# Continuous deployment using GitHub actions
 
-> This demo assumes yoo already have a Kubernetes cluster configured with Dapr. If not, consider the opinionated Dapr install in [dapr-demos/setup](https://github.com/mchmarny/dapr-demos/tree/master/setup).
+Simple pipeline for test, image, and deploy app onto Kubernetes cluster using GitHub action. This pipeline is triggered by the creation of a release tag (e.g. `v.1.2.3`). It sets up the test environment and runs unit tests. If tests are successful, the pipeline creates configuration data, builds and publishes the image to the GitHub container registry, as well as deploys the resulting image using the simple deployment strategy. 
 
 ![](image/diagram.png)
 
 ![git-ops release on tag](https://github.com/mchmarny/git-ops/workflows/git-ops%20release%20on%20tag/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/mchmarny/git-ops)](https://goreportcard.com/report/github.com/mchmarny/git-ops) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/mchmarny/git-ops)
+
+> This demo assumes yoo already have a Kubernetes cluster configured with Dapr. If not, consider the opinionated Dapr install in [dapr-demos/setup](https://github.com/mchmarny/dapr-demos/tree/master/setup).
 
 ## Demo
 
