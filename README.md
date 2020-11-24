@@ -6,7 +6,7 @@ Simple pipeline for test, image, and deploy app onto Kubernetes cluster using Gi
 
 ![](image/diagram.png)
 
-This pipeline is triggered by the creation of a release tag (e.g. `v.1.2.3`). It sets up the test environment and runs unit tests. If tests are successful, the pipeline creates configuration data, builds and publishes the image to the GitHub container registry, as well as deploys the resulting image using the simple deployment strategy. 
+This pipeline is triggered by the creation of a release tag (e.g. `v.1.2.3`). It sets up the test environment and runs unit tests. If tests are successful, the pipeline creates configuration data, builds and publishes the image to the GitHub container registry, as well as deploys the resulting image using the simple deployment strategy and sends notifications on the progress of the entire pipeline to Discourt 
 
 > This demo assumes yoo already have a Kubernetes cluster configured with Dapr. If not, consider the opinionated Dapr install in [dapr-demos/setup](https://github.com/mchmarny/dapr-demos/tree/master/setup).
 
@@ -62,7 +62,10 @@ Once the pipeline is finished, you navigate again to the app.
 
 https://gitops.thingz.io/
 
-If everything went well, the new release version should reflect the change you made to the variable (`APP_VERSION`) in the [app/Makefile](app/Makefile) and the deployment time (in UTC) should be also updated. 
+If everything went well, the new release version should reflect the change you made to the variable (`APP_VERSION`) in the [app/Makefile](app/Makefile) and the deployment time (in UTC) should be also updated. And the Discord server should include the status notification.
+
+![](image/discord.png)
+
 
 If the changes are not there, check the [GitHub Action](https://github.com/mchmarny/git-ops/actions?query=workflow%3A%22git-ops+release+on+tag%22) to check on the status. 
 
