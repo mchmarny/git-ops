@@ -79,7 +79,9 @@ kubectl apply -f config/space.yaml
 If you have certs for the demo domain create a TLS secret:
 
 ```shell
-kubectl create secret tls tls-secret -n gitops --key cert-pk.pem --cert cert-ca.pem
+kubectl create secret tls tls-secret -n gitops \
+  --key certs/ingress-key.pem \
+  --cert certs/ingress-cert.pem
 ```
 
 Now apply the Dapr component and the rest of [deployment](config/):
