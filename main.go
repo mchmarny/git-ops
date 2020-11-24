@@ -20,7 +20,7 @@ import (
 
 const (
 	// demo message
-	greetingsMessage = "hello Yaron"
+	greetingsMessage = "hello SEA"
 
 	// component args
 	queryURL      = "https://swapi.dev/api/people/%d/"
