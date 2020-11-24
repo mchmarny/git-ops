@@ -130,7 +130,7 @@ To enable GitHub action to deploy the built images to your cluster you'll first 
 For AKS for example:
 
 ```shell
-az aks get-credentials --name demo --file sa.json
+az aks get-credentials --name demo2 --file sa.json
 ```
 
 next, create GitHub secret (named `KUBE_CONFIG`) with the content of that file on the repo where the action will run.
