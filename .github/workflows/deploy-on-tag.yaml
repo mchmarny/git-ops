@@ -7,9 +7,10 @@ on:
 
 jobs:
 
-  init:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+
     - name: Notify
       uses: rjstone/discord-webhook-notify@v1
       with:
@@ -19,16 +20,14 @@ jobs:
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}        
         avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
 
-  build:
-    needs: init
-    runs-on: ubuntu-latest
-    steps:       
     - name: Setup
       uses: actions/setup-go@v2
       with:
         go-version: ^1.15
+
     - name: Checkout
       uses: actions/checkout@v2
+
     - name: Cache
       uses: actions/cache@v2
       with:
@@ -36,17 +35,21 @@ jobs:
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
+
     - name: Tidy
       run: |
         go mod tidy 
         go mod vendor
+
     - name: Test
       run: |
         go test -v -count=1 -race ./...
+
     - name: Variables
       run: |
         echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
         echo $(date -u +"BUILD_TIME=%Y-%m-%dT%T-UTC") >> $GITHUB_ENV
+
     - name: Push
       uses: docker/build-push-action@v1
       with:
@@ -59,17 +62,12 @@ jobs:
         tags: ${{ env.RELEASE_VERSION }},latest
         build_args: APP_VERSION=${{ env.RELEASE_VERSION }},BUILD_TIME=${{ env.BUILD_TIME }}
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Context
+    - name: Config
       uses: azure/k8s-set-context@v1
       with:
         method: kubeconfig
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
     - name: Publish
       uses: azure/k8s-deploy@v1
       with:
@@ -79,11 +77,7 @@ jobs:
         namespace: gitops
         images: ghcr.io/mchmarny/git-ops:${{ env.RELEASE_VERSION }}
 
-  finalize:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: Notify
+    - name: Finalize
       uses: rjstone/discord-webhook-notify@v1
       with:
         severity: info
