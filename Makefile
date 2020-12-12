@@ -1,4 +1,4 @@
-APP_VERSION ?=v0.5.11
+APP_VERSION ?=v0.5.12
 APP_ID      ?=git-ops
 APP_PORT    ?=8080
 IMAGE_OWNER ?=$(shell git config --get user.username)

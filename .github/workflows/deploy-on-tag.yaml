@@ -20,9 +20,7 @@ jobs:
       uses: rjstone/discord-webhook-notify@v1.0.4
       with:
         severity: info
-        text: Release Notification
-        description: Release process started...
-        details: "Version: ${{ env.RELEASE_VERSION }}, Build Time: ${{ env.BUILD_TIME }}"
+        text: "Release process for tag ${{ env.RELEASE_VERSION }} started"
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}        
         avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
 
@@ -84,10 +82,7 @@ jobs:
       uses: rjstone/discord-webhook-notify@v1.0.4
       with:
         severity: info
-        text: Release Notification
-        description: Release completed
-        details: "Version: ${{ env.RELEASE_VERSION }}, Build Time: ${{ env.BUILD_TIME }}"
+        text: "Release process for tag ${{ env.RELEASE_VERSION }} completed."
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}        
         avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
 
-        
